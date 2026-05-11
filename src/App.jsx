@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import Dashboard from "./Pages/Dashboard";
+import { Route, Routes } from "react-router-dom";
+import Login from "./Auth/Login";
+import Layout from "./Layout/Layout";
+import UserMgnt from "./UserMgmt/UserMgnt";
+import AllProduct from "./ProdMgmt/AllProduct";
 
 const App = () => {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="users" element={<UserMgnt />} />
+        <Route path="products" element={<AllProduct />} />
+      </Route>
+    </Routes>
+  );
 };
 
 export default App;
