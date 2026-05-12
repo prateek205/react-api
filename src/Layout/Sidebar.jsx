@@ -4,15 +4,17 @@ import { FaBox, FaUser } from "react-icons/fa";
 import { MdAddShoppingCart, MdOutlineSystemUpdateAlt } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ setShowProductPopup, setShowUpdateProdPopup }) => {
   return (
     <section>
       <div className="flex flex-col gap-10">
         <h1 className="text-4xl font-bold">Admin Panel</h1>
         <ul className="flex flex-col gap-5 text-lg">
-          <li className="flex items-center gap-3">
-            <AiFillDashboard /> Dashboard
-          </li>
+          <Link to="dashboard">
+            <li className="flex items-center gap-3">
+              <AiFillDashboard /> Dashboard
+            </li>
+          </Link>
           <Link to="users">
             <li className="flex items-center gap-3">
               <FaUser /> Users
@@ -24,11 +26,17 @@ const Sidebar = () => {
               Products
             </li>
           </Link>
-          <li className="flex items-center gap-3">
+          <li
+            className="flex items-center gap-3 cursor-pointer"
+            onClick={() => setShowProductPopup(true)}
+          >
             <MdAddShoppingCart />
             Add Products
           </li>
-          <li className="flex items-center gap-3">
+          <li
+            className="flex items-center gap-3 cursor-pointer"
+            onClick={() => setShowUpdateProdPopup(true)}
+          >
             <MdOutlineSystemUpdateAlt />
             Update Product
           </li>
