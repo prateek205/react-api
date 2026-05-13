@@ -1,8 +1,10 @@
 import React from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { MyProduct } from "../context/ProductContext";
+import { useOutletContext } from "react-router-dom";
 
 const AllProduct = () => {
+  const { setShowUpdateProdPopup } = useOutletContext();
   const { products, deleteData } = MyProduct();
 
   return (
@@ -42,7 +44,10 @@ const AllProduct = () => {
                     </td>
                     <td className="p-2 text-xl align-middle text-left">
                       <div className="flex gap-5">
-                        <button className="hover:text-yellow-500 duration-300">
+                        <button
+                          className="hover:text-yellow-500 duration-300"
+                          onClick={() => setShowUpdateProdPopup(true)}
+                        >
                           <FaEdit />
                         </button>
                         <button

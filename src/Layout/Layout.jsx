@@ -3,10 +3,13 @@ import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
+import { MyProduct } from "../context/ProductContext";
 
 const Layout = () => {
   const [showProductPopup, setShowProductPopup] = useState(false);
   const [showUpdateProdPopup, setShowUpdateProdPopup] = useState(false);
+
+  const { form, handleChange, handleSubmit } = MyProduct();
 
   return (
     <section className="h-screen w-full">
@@ -19,7 +22,7 @@ const Layout = () => {
         </h1>
         <div className="flex flex-col gap-5 bg-gray-300 w-full">
           <Navbar />
-          <Outlet />
+          <Outlet context={{setShowUpdateProdPopup}}/>
         </div>
       </div>
       {showProductPopup && (
@@ -32,21 +35,29 @@ const Layout = () => {
               <IoClose />
             </button>
             <h2 className="text-2xl font-bold">Add Product</h2>
-            <form className="flex flex-col gap-6 items-start justify-center w-full ">
+            <form
+              className="flex flex-col gap-6 items-start justify-center w-full"
+              onSubmit={(e)=>handleSubmit(e,setShowProductPopup)}
+            >
               <div className="w-full flex flex-col gap-1">
                 <label className="font-bold">Image</label>
                 <input
                   type="text"
                   placeholder="Img URL"
+                  name="imageUrl"
+                  value={form.imageUrl}
+                  onChange={handleChange}
                   className="w-full py-2 px-2 outline-none rounded-md bg-gray-200 shadow-[0_0_2px_rgb(50,50,50)]"
                 />
               </div>
               <div className="w-full flex flex-col gap-2">
                 <label className="font-bold">Product Name</label>
                 <input
-                  className="w-full"
                   type="text"
                   placeholder="Product Name"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
                   className="w-full py-2 px-2 outline-none rounded-md bg-gray-200 shadow-[0_0_2px_rgb(50,50,50)]"
                 />
               </div>
@@ -57,6 +68,9 @@ const Layout = () => {
                     className="w-full"
                     type="text"
                     placeholder="Product Price"
+                    name="price"
+                    value={form.price}
+                    onChange={handleChange}
                     className="w-full py-2 px-2 outline-none rounded-md bg-gray-200 shadow-[0_0_2px_rgb(50,50,50)]"
                   />
                 </div>
@@ -66,15 +80,20 @@ const Layout = () => {
                     className="w-full"
                     type="text"
                     placeholder="Product Stock"
+                    name="stock"
+                    value={form.stock}
+                    onChange={handleChange}
                     className="w-full py-2 px-2 outline-none rounded-md bg-gray-200 shadow-[0_0_2px_rgb(50,50,50)]"
                   />
                 </div>
                 <div className="w-full flex flex-col gap-2">
-                  <label className="font-bold">Product Discount</label>
+                  <label className="font-bold">Product Category</label>
                   <input
-                    className="w-full"
                     type="text"
-                    placeholder="Product Discount"
+                    placeholder="Product Category"
+                    name="category"
+                    value={form.category}
+                    onChange={handleChange}
                     className="w-full py-2 px-2 outline-none rounded-md bg-gray-200 shadow-[0_0_2px_rgb(50,50,50)]"
                   />
                 </div>
@@ -83,9 +102,11 @@ const Layout = () => {
                 <label className="font-bold">Product Description</label>
                 <textarea
                   rows={10}
-                  className="w-full"
                   type="text"
                   placeholder="Product Description"
+                  name="description"
+                  value={form.description}
+                  onChange={handleChange}
                   className="w-full py-2 px-2 outline-none rounded-md bg-gray-200
                 shadow-[0_0_2px_rgb(50,50,50)]"
                 ></textarea>
