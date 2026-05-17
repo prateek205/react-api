@@ -8,7 +8,7 @@ const AllProduct = () => {
   const { products, deleteData } = MyProduct();
 
   return (
-    <section className="py-3 px-5">
+    <section className="py-3 px-5 h-full overflow-y-scroll">
       <div className="flex flex-col gap-5">
         <h1 className="text-2xl font-bold uppercase">Product Management</h1>
         <div>
