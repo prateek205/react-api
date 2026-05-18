@@ -20,9 +20,9 @@ const Layout = () => {
             setShowUpdateProdPopup={setShowUpdateProdPopup}
           />
         </h1>
-        <div className="flex flex-col gap-5 bg-gray-300 w-full">
+        <div className="flex flex-col bg-gray-300 w-full">
           <Navbar />
-          <Outlet context={{setShowUpdateProdPopup}}/>
+          <Outlet context={{ setShowUpdateProdPopup }} />
         </div>
       </div>
       {showProductPopup && (
@@ -37,7 +37,7 @@ const Layout = () => {
             <h2 className="text-2xl font-bold">Add Product</h2>
             <form
               className="flex flex-col gap-6 items-start justify-center w-full"
-              onSubmit={(e)=>handleSubmit(e,setShowProductPopup)}
+              onSubmit={(e) => handleSubmit(e, setShowProductPopup)}
             >
               <div className="w-full flex flex-col gap-1">
                 <label className="font-bold">Image</label>

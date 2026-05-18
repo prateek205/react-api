@@ -15,7 +15,7 @@ export const UserContextProvider = ({ children }) => {
       const data = res.data;
 
       setUsers(res.data.users);
-      console.log("user:", users);
+      // console.log("user:", users);
     } catch (error) {
       console.log(error);
     }

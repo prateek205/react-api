@@ -28,7 +28,7 @@ export const ProductContextProvider = ({ children }) => {
       const data = res.data;
 
       setProducts(res.data.products);
-      console.log("data:", products);
+      // console.log("data:", products);
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +44,7 @@ export const ProductContextProvider = ({ children }) => {
     try {
       const res = await axios.post(URL, newProduct);
       const data = res.data;
-      console.log("data:", res.data);
+      // console.log("data:", res.data);
       getData();
     } catch (error) {
       console.log(error.response.data);
