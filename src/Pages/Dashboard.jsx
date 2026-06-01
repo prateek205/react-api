@@ -42,124 +42,167 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <section className="min-h-screen bg-gray-100 p-6">
-      {/* Heading */}
-      <div className="mb-10">
-        <h1 className="text-4xl font-bold text-gray-800">Welcome Admin 👋</h1>
+    <section className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-100 to-slate-200 p-6">
+      {/* Welcome Section */}
+      <div className="bg-white rounded-3xl shadow-lg border border-gray-200 p-8 mb-8">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-800">
+          Welcome Admin 👋
+        </h1>
 
-        <p className="text-gray-500 mt-2">Manage your store dashboard easily</p>
+        <p className="text-gray-500 mt-3 text-lg">
+          Manage your store dashboard easily
+        </p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
         {/* Revenue */}
-        <div className="bg-white rounded-2xl shadow-md p-6 flex items-center justify-between hover:shadow-xl transition duration-300">
-          <div>
-            <p className="text-gray-500 text-sm">Total Revenue</p>
+        <div className="group bg-white rounded-3xl border border-gray-200 p-6 shadow-md hover:shadow-2xl hover:-translate-y-2 duration-300">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-wide text-gray-500">
+                Total Revenue
+              </p>
 
-            <h2 className="text-3xl font-bold mt-2 text-pink-600">
-              ₹{stats?.totalRevenue || 0}
-            </h2>
-          </div>
+              <h2 className="text-4xl font-bold text-pink-600 mt-2">
+                ₹{stats?.totalRevenue || 0}
+              </h2>
+            </div>
 
-          <div className="bg-pink-100 p-4 rounded-full">
-            <FaIndianRupeeSign className="text-3xl text-pink-600" />
+            <div className="h-16 w-16 rounded-2xl bg-pink-100 flex items-center justify-center group-hover:scale-110 duration-300">
+              <FaIndianRupeeSign className="text-3xl text-pink-600" />
+            </div>
           </div>
         </div>
 
         {/* Users */}
-        <div className="bg-white rounded-2xl shadow-md p-6 flex items-center justify-between hover:shadow-xl transition duration-300">
-          <div>
-            <p className="text-gray-500 text-sm">Total Users</p>
+        <div className="group bg-white rounded-3xl border border-gray-200 p-6 shadow-md hover:shadow-2xl hover:-translate-y-2 duration-300">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-wide text-gray-500">
+                Total Users
+              </p>
 
-            <h2 className="text-3xl font-bold mt-2 text-blue-600">
-              {stats?.totalUsers || 0}
-            </h2>
-          </div>
+              <h2 className="text-4xl font-bold text-blue-600 mt-2">
+                {stats?.totalUsers || 0}
+              </h2>
+            </div>
 
-          <div className="bg-blue-100 p-4 rounded-full">
-            <FiUsers className="text-3xl text-blue-600" />
+            <div className="h-16 w-16 rounded-2xl bg-blue-100 flex items-center justify-center group-hover:scale-110 duration-300">
+              <FiUsers className="text-3xl text-blue-600" />
+            </div>
           </div>
         </div>
 
         {/* Orders */}
-        <div className="bg-white rounded-2xl shadow-md p-6 flex items-center justify-between hover:shadow-xl transition duration-300">
-          <div>
-            <p className="text-gray-500 text-sm">Total Orders</p>
+        <div className="group bg-white rounded-3xl border border-gray-200 p-6 shadow-md hover:shadow-2xl hover:-translate-y-2 duration-300">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-wide text-gray-500">
+                Total Orders
+              </p>
 
-            <h2 className="text-3xl font-bold mt-2 text-green-600">
-              {orders?.length || 0}
-            </h2>
-          </div>
+              <h2 className="text-4xl font-bold text-green-600 mt-2">
+                {orders?.length || 0}
+              </h2>
+            </div>
 
-          <div className="bg-green-100 p-4 rounded-full">
-            <FiShoppingBag className="text-3xl text-green-600" />
+            <div className="h-16 w-16 rounded-2xl bg-green-100 flex items-center justify-center group-hover:scale-110 duration-300">
+              <FiShoppingBag className="text-3xl text-green-600" />
+            </div>
           </div>
         </div>
       </div>
 
       {/* Recent Orders */}
-      <div className="bg-white rounded-2xl shadow-md py-1 px-3">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">Recent Orders</h2>
+      <div className="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-6 border-b">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-800">Recent Orders</h2>
 
-          <button className="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition duration-300">
+            <p className="text-sm text-gray-500">Latest customer purchases</p>
+          </div>
+
+          <button className="px-5 py-2 rounded-xl bg-black text-white hover:bg-gray-800 duration-300">
             View All
           </button>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="bg-gray-100 text-left">
-                <th className="p-4">Order ID</th>
-                <th className="p-4">Customer</th>
-                <th className="p-4">Amount</th>
-                <th className="p-4">Status</th>
-                <th className="p-4">Date</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {recentOrders?.map((order) => (
-                <tr
-                  key={order._id}
-                  className="border-b hover:bg-gray-50 transition duration-200"
-                >
-                  {/* Order ID */}
-                  <td className="p-4 font-medium text-gray-700">
-                    #{order._id.slice(-6)}
-                  </td>
-
-                  {/* Customer */}
-                  <td className="p-4">{order?.userId?.name || "Unknown"}</td>
-
-                  {/* Amount */}
-                  <td className="p-4 font-semibold text-pink-600">
-                    ₹{order.totalAmount}
-                  </td>
-
-                  {/* Status */}
-                  <td className="p-4">
-                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-                      Success
-                    </span>
-                  </td>
-
-                  {/* Date */}
-                  <td className="p-4 text-gray-500">
-                    {new Date(order.createdAt).toLocaleDateString()}
-                  </td>
+        {/* Orders Table */}
+        {recentOrders?.length > 0 ? (
+          <div className="max-h-[500px] overflow-y-auto">
+            <table className="w-full">
+              <thead className="sticky top-0 bg-white z-10 shadow-sm">
+                <tr className="bg-gray-50 border-b">
+                  <th className="p-4 text-left">Order ID</th>
+                  <th className="p-4 text-left">Customer</th>
+                  <th className="p-4 text-left">Amount</th>
+                  <th className="p-4 text-left">Status</th>
+                  <th className="p-4 text-left">Date</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
 
-        {/* No Orders */}
-        {recentOrders.length === 0 && (
-          <div className="text-center py-10 text-gray-500">
-            No Recent Orders Found
+              <tbody>
+                {recentOrders.map((order, index) => (
+                  <tr
+                    key={order._id}
+                    className={`border-b hover:bg-gray-50 duration-200 ${
+                      index % 2 === 0 ? "bg-white" : "bg-gray-50/60"
+                    }`}
+                  >
+                    {/* Order ID */}
+                    <td className="p-4 font-semibold text-gray-700">
+                      #{order._id.slice(-6)}
+                    </td>
+
+                    {/* Customer */}
+                    <td className="p-4">
+                      <div className="flex items-center gap-3">
+                        <div className="h-10 w-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-semibold">
+                          {order?.userId?.name?.charAt(0)?.toUpperCase() || "U"}
+                        </div>
+
+                        <div>
+                          <p className="font-medium text-gray-800">
+                            {order?.userId?.name || "Unknown"}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+
+                    {/* Amount */}
+                    <td className="p-4 font-bold text-pink-600">
+                      ₹{order.totalAmount}
+                    </td>
+
+                    {/* Status */}
+                    <td className="p-4">
+                      <span className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-semibold">
+                        Completed
+                      </span>
+                    </td>
+
+                    {/* Date */}
+                    <td className="p-4 text-gray-500">
+                      {new Date(order.createdAt).toLocaleDateString()}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-16">
+            <div className="text-6xl mb-4">📦</div>
+
+            <h3 className="text-xl font-semibold text-gray-700">
+              No Orders Yet
+            </h3>
+
+            <p className="text-gray-500 mt-2 text-center">
+              Orders will appear here once customers start purchasing.
+            </p>
           </div>
         )}
       </div>

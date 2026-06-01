@@ -7,44 +7,95 @@ const UserMgnt = () => {
   const { users, deleteUser } = MyUser();
 
   return (
-    <section className="py-3 px-5">
-      <div className="flex flex-col gap-5">
-        <h1 className="text-2xl font-bold uppercase">User Management</h1>
-        <div>
-          <table className="w-full border-collapse">
-            <thead className="bg-gray-400">
-              <tr>
-                <th className="text-left p-2 w-1">Id</th>
-                <th className="text-left p-2 w-1/4">Name</th>
-                <th className="text-left p-2">Email</th>
-                <th className="text-left p-2">Role</th>
-                <th className="text-left p-2 w-1/6">Status</th>
-                <th className="text-left p-2 w-1/6">Action</th>
+    <section className="p-6 bg-gray-100 min-h-screen">
+      <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800">
+              User Management
+            </h1>
+            <p className="text-gray-500">Manage all registered users</p>
+          </div>
+
+          <div className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-semibold">
+            Total Users: {users.length}
+          </div>
+        </div>
+
+        {/* Scrollable Table */}
+        <div className="max-h-[500px] overflow-y-auto">
+          <table className="w-full">
+            <thead className="sticky top-0 bg-white shadow-sm z-10">
+              <tr className="border-b bg-gray-50">
+                <th className="p-4 text-left">User</th>
+                <th className="p-4 text-left">Email</th>
+                <th className="p-4 text-left">Role</th>
+                <th className="p-4 text-left">Status</th>
+                <th className="p-4 text-center">Actions</th>
               </tr>
             </thead>
+
             <tbody>
-              {users.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td className="p-2">{item._id}</td>
-                    <td className="p-2">{item.name}</td>
-                    <td className="p-2">{item.email}</td>
-                    <td className="p-2">{item.role}</td>
-                    <td className="p-2 text-green-600 font-bold">Active</td>
-                    <td className="flex gap-5 p-2 text-xl">
-                      <button className="hover:text-yellow-500 duration-300">
+              {users.map((item, index) => (
+                <tr
+                  key={item._id}
+                  className={`border-b transition duration-200 hover:bg-gray-50 ${
+                    index % 2 === 0 ? "bg-white" : "bg-gray-50/50"
+                  }`}
+                >
+                  {/* User */}
+                  <td className="p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold">
+                        {item.name?.charAt(0).toUpperCase()}
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold text-gray-800">
+                          {item.name}
+                        </h3>
+                        <p className="text-xs text-gray-500">
+                          ID: {item._id.slice(-6)}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+
+                  {/* Email */}
+                  <td className="p-4 text-gray-600">{item.email}</td>
+
+                  {/* Role */}
+                  <td className="p-4">
+                    <span className="px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-sm font-medium">
+                      {item.role}
+                    </span>
+                  </td>
+
+                  {/* Status */}
+                  <td className="p-4">
+                    <span className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-semibold">
+                      Active
+                    </span>
+                  </td>
+
+                  {/* Actions */}
+                  <td className="p-4">
+                    <div className="flex justify-center gap-3">
+                      <button className="h-10 w-10 rounded-lg bg-yellow-100 text-yellow-600 hover:bg-yellow-500 hover:text-white transition duration-300 flex items-center justify-center">
                         <FaEdit />
                       </button>
+
                       <button
-                        className="hover:text-red-500 duration-300"
                         onClick={() => deleteUser(item._id)}
+                        className="h-10 w-10 rounded-lg bg-red-100 text-red-600 hover:bg-red-500 hover:text-white transition duration-300 flex items-center justify-center"
                       >
                         <FaTrash />
                       </button>
-                    </td>
-                  </tr>
-                );
-              })}
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

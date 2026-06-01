@@ -12,7 +12,7 @@ const Layout = () => {
   const { form, handleChange, handleSubmit } = MyProduct();
 
   return (
-    <section className="h-screen w-full">
+    <section className="h-full w-full">
       <div className="flex h-full">
         <h1 className="w-1/5 bg-gray-900 text-white p-2">
           <Sidebar
