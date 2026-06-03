@@ -8,8 +8,8 @@ const AllProduct = () => {
   const { products, deleteData } = MyProduct();
 
   return (
-    <section className="p-6 h-full">
-      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 h-full flex flex-col">
+    <section className="p-6 h-screen">
+      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 max-h-[700px] flex flex-col py-5">
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b">
           <div>
@@ -25,7 +25,7 @@ const AllProduct = () => {
         </div>
 
         {/* Scrollable Table */}
-        <div className="flex-1 overflow-auto">
+        <div className="max-h-[500px] overflow-y-auto ">
           <table className="w-full">
             <thead className="sticky top-0 bg-white shadow-sm z-10">
               <tr className="bg-gray-100 border-b">
