@@ -26,13 +26,15 @@ const Sidebar = ({ setShowProductPopup }) => {
               Products
             </li>
           </Link>
-          <li
-            className="flex items-center gap-3 cursor-pointer"
-            onClick={() => setShowProductPopup(true)}
-          >
-            <MdAddShoppingCart />
-            Add Products
-          </li>
+          <Link to="/login">
+            <li
+              className="flex items-center gap-3 cursor-pointer"
+              onClick={() => setShowProductPopup(true)}
+            >
+              <MdAddShoppingCart />
+              Add Products
+            </li>
+          </Link>
         </ul>
       </div>
     </section>
